@@ -87,4 +87,86 @@ public class Main {
         System.out.println();
     }
 
+
+    public static Estudiante agregarEstudiante() {
+        System.out.println("Agregar Estudiante");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el nombre del estudiante: ");
+        String nombre = scanner.nextLine();
+        double nota1 = ingresarNota("Ingrese la nota 1: ");
+        double nota2 = ingresarNota("Ingrese la nota 2: ");
+        double nota3 = ingresarNota("Ingrese la nota 3: ");
+        double nota4 = ingresarNota("Ingrese la nota 4: ");
+        double nota5 = ingresarNota("Ingrese la nota 5: ");
+        return new Estudiante(nombre, nota1, nota2, nota3, nota4, nota5);
+    }
+
+    public static double ingresarNota(String text) {
+        Scanner scanner = new Scanner(System.in);
+        double nota;
+        do {
+            System.out.print(text);
+            nota = scanner.nextInt();
+            if (nota < 0 || nota > 70) {
+                System.out.println("La nota debe estar entre 0 y 70");
+            }
+            if (nota > 10 && nota < 70) {
+                nota = nota / 10;
+                System.out.println("La nota es: " + nota);
+            }
+        } while (nota < 0 || nota > 70);
+        return nota;
+    }
+
+    ;
+
+    public static void terminarPrograma() {
+        System.out.println("Gracias por usar el programa");
+        System.exit(0);
+    }
+
+
+    public static int selececcionarOpcion(int maximo) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 0;
+        do {
+            System.out.print("Ingrese una opcion: ");
+            opcion = scanner.nextInt();
+        } while (opcion < 1 || opcion > maximo);
+        return opcion;
+    }
+
+    ;
+}
+
+class Estudiante {
+    public String nombre;
+    public double nota1;
+    public double nota2;
+    public double nota3;
+    public double nota4;
+    public double nota5;
+    public double notafinal;
+    public String estado;
+
+    public Estudiante(String nombre, double nota1, double nota2, double nota3, double nota4, double nota5) {
+        this.nombre = nombre;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+        this.nota3 = nota3;
+        this.nota4 = nota4;
+        this.nota5 = nota5;
+        this.notafinal = ((nota1 * 0.25) + (nota2 * 0.25) + (nota3 * 0.25) + (nota4 * 0.15) + (nota5 * 0.1));
+        this.estado = Estado();
+    }
+
+    public String Estado() {
+        if (this.notafinal >= 4.0) {
+            return "Aprobado";
+        } else if (this.notafinal >= 3.5) {
+            return "Examen";
+        } else {
+            return "Reprobado";
+        }
+    }
 }
