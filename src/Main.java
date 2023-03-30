@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -48,4 +50,41 @@ public class Main {
 
         scanner.close();
     }
+
+    public static void notasAleatorias() {
+        double nota = ingresarNotaAleatoria();
+        System.out.println("La nota ingresada es: " + nota);
+    }
+
+    public static double ingresarNotaAleatoria() {
+        Random random = new Random();
+        double nota = 1.0 + (7.0 - 1.0) * random.nextDouble();
+        return nota;
+    }
+    public class AgregarEstudiante {
+
+        public static void main(String[] args) {
+            List<Double> notas = generarNotasAleatorias(5);
+            agregarEstudiante("Juan Perez", notas);
+        }
+
+        public static List<Double> generarNotasAleatorias(int cantidad) {
+            Random random = new Random();
+            List<Double> notas = new ArrayList<>();
+            for (int i = 0; i < cantidad; i++) {
+                double nota = 1.0 + (7.0 - 1.0) * random.nextDouble();
+                notas.add(nota);
+            }
+            return notas;
+        }
+
+        public static void agregarEstudiante(String nombre, List<Double> notas) {
+            System.out.println("Estudiante: " + nombre);
+            System.out.println("Notas:");
+            for (int i = 0; i < notas.size(); i++) {
+                System.out.println("Nota " + (i+1) + ": " + notas.get(i));
+            }
+        }
+    }
+
 }
